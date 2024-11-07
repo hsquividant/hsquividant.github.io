@@ -1,0 +1,65 @@
+<html> 
+<head>
+<title>TP1 - Service Numerique</title>  
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7.3/leaflet.css" />
+<script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7.3/leaflet.js"></script>
+
+<style>
+#map{position:absolute; top:0; bottom:0; width:99%;}
+</style>
+
+</head>
+
+<body>
+
+  <div id="map"></div>
+  
+<script>
+
+// Flux WMS à modifier
+  
+var wmsurl = 'https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52' ;
+
+//Appel et configuration carte
+
+var map = L.map('map', {
+            center: [48.11, -1.655],
+            zoom: 10 });
+   
+   
+// Ajout fonds de carte (tuiles et WMS)
+
+var baselayers = {
+     
+    // Services de tuiles clasiques
+	
+     OSM: L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'),
+     ESRI: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'),
+
+};baselayers.OSM.addTo(map);
+ 
+ 
+// Ajout de la couche NDVI
+  
+var ndvi = L.tileLayer.wms(wmsurl, {layers: 'NDVI-OCTOBRE-2023',format: 'image/png',transparent:true, opacity: 0.5}); 
+  
+   
+// Gestion des couches
+  
+  var mylayers = {"NDVI": ndvi};
+  
+// Selecteurs fonds de carte
+ 
+L.control.layers(baselayers, null, {collapsed : false}).addTo(map);	 
+
+L.control.layers(null, mylayers, {collapsed : false}).addTo(map);	 
+
+// Echelle cartographique
+  
+L.control.scale().addTo(map);
+
+  </script>
+   
+</body>
+</html>
