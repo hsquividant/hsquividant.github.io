@@ -46,19 +46,19 @@ E<!DOCTYPE html>
 
 <body>
     <div class="container">
-        <h1>Coursss Services Numériques - Master 2 TELENVI / E2C</h1>
+        <h1>Cours Services Numériques - Master 2 TELENVI / E2C</h1>
         <h3>TP n°1 : Exemple d'affichage d'un flux WMS de SentinelHub dans un portail web</h3>
 
         <div id='IDcarte'></div>
 
         <script>
-            var map = L.map('IDcarte').setView([48.11, -1.655], 10);
+            var map = L.map('IDcarte').setView([48.11, -1.655], 11);
             
       const url = "https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52";
       const mapOptions = {
                layers: "NDVI-HERVE",
                transparent: true,
-               opacity: 0.5
+               opacity: 0.3
       };
       const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {
                 foo: 'bar',
