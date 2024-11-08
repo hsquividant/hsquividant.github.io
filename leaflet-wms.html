@@ -57,7 +57,8 @@ E<!DOCTYPE html>
       const url = "https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52";
       const mapOptions = {
                layers: "NDVI-HERVE",
-               'transparent': true
+               transparent: true,
+               opacity: 0.5
       };
       const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {
                 foo: 'bar',
