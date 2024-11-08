@@ -52,32 +52,30 @@ E<!DOCTYPE html>
         <div id='IDcarte'></div>
 
         <script>
-            var map = L.map('IDcarte').setView([48.11, -1.655], 11);
+      // Création de la carte centrée sur Rennes
+      const map = L.map('IDcarte').setView([48.11, -1.655], 12);
             
-      const url = "https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52";
+      // Création de la couche OpenStreetMap comme fond de plan
+      const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {
+                foo: 'bar',
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);        
+            
+      // URL du flux WMS de SentinelHub  
+      const wmsUrl = "https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52";
+            
+      // Création de la couche NDVI et réglage de la transparance
       const mapOptions = {
                layers: "NDVI-HERVE",
                transparent: true,
                opacity: 0.3
       };
-      const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {
-                foo: 'bar',
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);      
+
+      // Ajout de la couche NDVI à la carte      
       const wmsLayer = L.tileLayer
         .wms(url, mapOptions)
         .addTo(map);
-  
-/*
-            L.marker([-21.12, 55.53]).addTo(maCarte).bindPopup("<b>Hello !</b><br />Je suis un popup."); 
-            // Recommended (explicit source)
-var options = {'transparent': true};
-var source = L.WMS.source("https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52", options);
-var mylayer = source.getLayer('NDVI-HERVE');
-var control = L.control.layers({}, {
-    'Layer 1': mylayer
-})
-control.addTo(maCarte);*/
+            
         </script>
     </div>
 </body>
