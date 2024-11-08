@@ -1,83 +1,71 @@
-E<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <meta charset="utf-8">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="https://emi.re/img/icn/favicon.ico" />
-    <title>Leaflet : exemple simple avec marqueur</title>
-
+    <title>Flux WMS SenstinelHub</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-
     <style>
         html,
         body {
             height: 100%;
             margin: 0;
         }
-
         .container {
             width: 1200px;
             height: 960px;
             margin: 0 auto
         }
-
         #IDcarte {
             width: 100%;
             height: 960px;
             margin: 0 auto
         }
-
         .bord {
             border: 2px solid blue;
         }
-
         .text-center {
             text-align: center
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>Cours Services Numériques - Master 2 TELENVI / E2C</h1>
         <h3>TP n°1 : Exemple d'affichage d'un flux WMS de SentinelHub dans un portail web</h3>
-
         <div id='IDcarte'></div>
-
         <script>
-      // Création de la carte centrée sur Rennes
-      const map = L.map('IDcarte').setView([48.11, -1.655], 12);
+        // Création de la carte centrée sur Rennes
+        const map = L.map('IDcarte').setView([48.11, -1.655], 12);
             
-      // Création de la couche OpenStreetMap comme fond de plan
-      const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {
-                foo: 'bar',
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);        
+        // Création de la couche OpenStreetMap comme fond de plan
+        const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {
+            foo: 'bar',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);        
             
-      // URL du flux WMS de SentinelHub  
-      const wmsUrl = "https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52";
+        // URL du flux WMS de SentinelHub  
+        const wmsUrl = "https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52";
             
-      // Création de la couche NDVI et réglage de la transparance
-      const mapOptions = {
-               layers: "NDVI-HERVE",
-               transparent: true,
-               opacity: 0.3
-      };
+        // Création de la couche NDVI et réglage de la transparance
+        const mapOptions = {
+            layers: "NDVI-HERVE",
+            transparent: true,
+            opacity: 0.3
+        };
 
-      // Ajout de la couche NDVI à la carte      
-      const wmsLayer = L.tileLayer
-        .wms(wmsUrl, mapOptions)
-        .addTo(map);
-            
+        // Ajout de la couche NDVI à la carte      
+        const wmsLayer = L.tileLayer
+            .wms(wmsUrl, mapOptions)
+            .addTo(map);
         </script>
     </div>
 </body>
-
 </html>
