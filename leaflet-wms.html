@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://emi.re/img/icn/favicon.ico" />
+    <title>Leaflet : exemple simple avec marqueur</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .container {
+            width: 1200px;
+            height: 960px;
+            margin: 0 auto
+        }
+
+        #IDcarte {
+            width: 90%;
+            height: 960px;
+            margin: 0 auto
+        }
+
+        .bord {
+            border: 2px solid blue;
+        }
+
+        .text-center {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Services Numériques - TP n°1 : Exemple d'ffichage d'un flux WMS de SentinelHub via la librairie Javascript Leaflet</h1>
+
+        <div id='IDcarte'></div>
+
+        <script>
+            var maCarte = L.map('IDcarte').setView([-21, 56], 8);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {
+                foo: 'bar',
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(maCarte);
+
+            L.marker([-21.12, 55.53]).addTo(maCarte).bindPopup("<b>Hello !</b><br />Je suis un popup."); 
+        </script>
+    </div>
+</body>
+
+</html>
