@@ -52,8 +52,16 @@ E<!DOCTYPE html>
         <div id='IDcarte'></div>
 
         <script>
-            var maCarte = L.map('IDcarte').setView([48.11, -1.655], 10);
+            var map = L.map('IDcarte').setView([48.11, -1.655], 10);
             
+      const url = "https://services.sentinel-hub.com/ogc/wms/8b3515da-5c59-4fae-bad7-fe5412c73e52";
+      const mapOptions = {
+               layers: "NDVI-HERVE",
+      };
+      const wmsLayer = L.tileLayer
+        .wms(url, mapOptions)
+        .addTo(map);
+            /*
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {
                 foo: 'bar',
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -67,7 +75,7 @@ var mylayer = source.getLayer('NDVI-HERVE');
 var control = L.control.layers({}, {
     'Layer 1': mylayer
 })
-control.addTo(maCarte);
+control.addTo(maCarte);*/
         </script>
     </div>
 </body>
